@@ -20,6 +20,74 @@
 
     <main>
 
+        <section id="input-section" class="input-grid"> 
+            <div>
+                <label for="name-input">name:</label>
+                <input id="name-input">
+            </div>
+            <div>
+                <label for="climate-input">climate:</label>
+                <select id="climate-input">
+                    <option value="hot">hot</option>
+                    <option value="cold">cold</option>
+                    <option value="tropical">tropical</option>
+                </select>
+            </div>
+            <div>
+                <label for="arch-input">architecture:</label>
+                <select id="arch-input">
+                    <option value="hotspring">hotspring town</option>
+                    <option value="casino">casino</option>
+                    <option value="haunted">haunted house</option>
+                </select>
+            </div>
+            <div>
+                <label for="slogan-input">slogan:</label>
+                <textarea id="slogan-input"></textarea>
+                <button id="add-slogan">add</button>
+
+            </div>
+        </section>
+
+        <section id="display-section">
+            <section class="display-grid box">
+                <div class="display-left">
+                    <div>
+                        <span id="name-display">name</span>
+                    </div>
+                    <div>
+                        <span id="slogan-display">slogan here...</span>
+                    </div>
+                </div>
+                <div class="display-right">
+                    <div>
+                        <img src="assets/tropical.png" id="climate-display">
+                    </div>
+                    <div>
+                        <img src="assets/haunted.png" id="arch-display">
+                    </div>
+                </div>
+            </section>
+            <div>
+                <button class="centered" id="export-list">add city</button>
+            </div>
+        </section>
+
+        <section id="road-map" class="road-map-grid">
+            <div>
+                <span id="name-display">city name</span>
+            </div>
+            <div>
+                <img id="climate-display" src="assets/tropical.png">
+            </div>
+            <div>
+                <img id="arch-display" src="assets/haunted.png">
+            </div>
+            <div>
+                <span id="slogan-display">slogan here</span>
+            </div>
+        </section>
+
     </main>
 
     <footer>&copy;2021 Aspiring Software Developer</footer>

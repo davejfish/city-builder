@@ -1,1 +1,55 @@
 /* add css for index.html */
+
+button {
+    margin: 10px;
+}
+
+input, select, textarea {
+    margin: 5px;
+}
+
+div img {
+    height: 90px;
+}
+
+section div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.input-grid {
+    display: grid;
+    grid-template-rows: 25% 25% 25% 25%;
+    height: 200px;
+    width: 400px;
+}
+
+.display-grid {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    width: 300px;
+}
+
+.display-left {
+    display: grid;
+    grid-template-rows: 20% 80%;
+}
+
+.display-right {
+    display: grid;
+    grid-template-rows: 50% 50%;
+}
+
+.road-map-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 300px;
+}
+
+.box {
+    border: solid 3px black;
+}
+
+#slogan-input {
+    flex-direction: row;
+}
