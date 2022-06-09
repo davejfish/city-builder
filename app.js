@@ -1,12 +1,14 @@
 // import needed modules
 
 // state
-const city = {
+const city = [{
     name: '',
     climate: '',
     arch: '',
     slogan: '',
-};
+}];
+
+let cities = [];
 // components
     // component
     // define and grab DOM elements
@@ -29,6 +31,7 @@ const displaySection = document.getElementById('display-section');
 const [nameDisplay, sloganDisplay] = displaySection.querySelectorAll('span');
 const [climateDisplay, archDisplay] = displaySection.querySelectorAll('img');
 const displayGrid = displaySection.querySelector('section');
+const addCity = displaySection.querySelector('button');
 
 // event handlers
 nameInput.addEventListener('input', () => {
@@ -52,6 +55,10 @@ sloganInput.addEventListener('input', () => {
     sloganDisplay.textContent = sloganInput.value;
 });
 
+addCity.addEventListener('click', () => {
+    handleAddCity();
+});
+
 // update functions
 function updateDisplay() {
     nameDisplay.textContent = city.name;
@@ -72,6 +79,51 @@ function updateClasses() {
     displayGrid.classList.value = 'display-grid';
     displayGrid.classList.add(`${climateInput.value}`);
 }
+
+function defaultInputs() {
+    nameInput.value = '';
+    climateInput.value = 'cold';
+    archInput.value = 'hotspring';
+    sloganInput.value = '';
+
+    cities = [];
+}
+
+function handleAddCity() {
+    cities.push(city);
+    console.log(cities);
+    displayCity();
+
+    defaultInputs();
+    updateState();
+    updateDisplay();
+}
+
+const cityList = document.getElementById('road-map');
+
+function displayCity() {
+    for (let i of cities) {
+        let container = document.createElement('section');
+        container.classList.add('road-map-grid');
+       
+        let pOne = document.createElement('p');
+        pOne.textContent = i.name;
+        
+        let pTwo = document.createElement('p');
+        pTwo.textContent = i.climate;
+        
+        let pThree = document.createElement('p');
+        pThree.textContent = i.arch;
+        
+        let pFour = document.createElement('p');
+        pFour.textContent = i.slogan;
+
+        container.append(pOne, pTwo, pThree, pFour);
+        cityList.append(container);
+
+    }
+}
+
 // page load actions
 updateState();
 updateDisplay();
