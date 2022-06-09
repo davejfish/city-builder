@@ -2,7 +2,6 @@
 
 /*
 TODO
-- add fonts to each arch value
 - refactor slogans to accept multiple slogans
 - change slogan even listener to add with enter or clicking add button
 - don't allow adding empty slogans
@@ -11,12 +10,12 @@ TODO
 */
 
 // state
-const city = [{
+const city = {
     name: '',
     climate: '',
     arch: '',
-    slogan: '',
-}];
+    slogan: [],
+};
 
 let cities = [];
 // components
@@ -35,6 +34,7 @@ const inputSection = document.getElementById('input-section');
 const nameInput = inputSection.querySelector('input');
 const [climateInput, archInput] = inputSection.querySelectorAll('select');
 const sloganInput = inputSection.querySelector('textarea');
+const addSloganButton = inputSection.querySelector('button');
 
 // display dom elements
 const displaySection = document.getElementById('display-section');
@@ -58,11 +58,17 @@ climateInput.addEventListener('change', () => {
 archInput.addEventListener('change', () => {
     city.arch = archInput.value;
     archDisplay.src = 'assets/' + archInput.value + '.png';
+    updateClasses();
 });
 
-sloganInput.addEventListener('input', () => {
-    city.slogan = sloganInput.value;
-    sloganDisplay.textContent = sloganInput.value;
+sloganInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+        handleAddSlogan();
+    }
+});
+
+addSloganButton.addEventListener('click', () => {
+    handleAddSlogan();
 });
 
 addCity.addEventListener('click', () => {
@@ -82,12 +88,14 @@ function updateState() {
     city.name = nameInput.value;
     city.climate = climateInput.value;
     city.arch = archInput.value;
-    city.slogan = sloganInput.value;
+    if (sloganInput.value.trim()) {
+        city.slogan.push(sloganInput.value);
+    }
 }
 
 function updateClasses() {
     displayGrid.classList.value = 'display-grid';
-    displayGrid.classList.add(`${climateInput.value}`);
+    displayGrid.classList.add(climateInput.value, archInput.value);
 }
 
 function defaultInputs() {
@@ -96,7 +104,27 @@ function defaultInputs() {
     archInput.value = 'hotspring';
     sloganInput.value = '';
 
+    city.slogan = [];
     cities = [];
+}
+
+function displaySlogans() {
+    sloganDisplay.innerHTML = '';
+
+    for (let i of city.slogan) {
+        let newList = document.createElement('li');
+        newList.textContent = i;
+        sloganDisplay.append(newList);
+    }
+}
+
+function handleAddSlogan() {
+
+    if (sloganInput.value.trim()) {
+        city.slogan.push(sloganInput.value);
+        displaySlogans();
+        sloganInput.value = '';
+    }
 }
 
 function handleAddCity() {
@@ -125,7 +153,7 @@ function displayCity() {
         pThree.textContent = i.arch;
         
         let pFour = document.createElement('p');
-        pFour.textContent = i.slogan;
+        pFour.textContent = i.slogan.length;
 
         container.append(pOne, pTwo, pThree, pFour);
         cityList.append(container);
