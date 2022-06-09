@@ -2,10 +2,10 @@
 
 // state
 const city = {
-    name: 'yamagata',
-    climate: 'cold',
-    arch: 'hotspring',
-    slogan: 'the snowy shogi mountain city',
+    name: '',
+    climate: '',
+    arch: '',
+    slogan: '',
 };
 // components
     // component
@@ -57,5 +57,13 @@ function updateDisplay() {
     archDisplay.src = 'assets/' + city.arch + '.png';
     sloganDisplay.textContent = city.slogan;
 }
+
+function updateState() {
+    city.name = nameInput.value;
+    city.climate = climateInput.value;
+    city.arch = archInput.value;
+    city.slogan = sloganInput.value;
+}
 // page load actions
+updateState();
 updateDisplay();
