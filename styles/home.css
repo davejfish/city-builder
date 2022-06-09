@@ -53,3 +53,21 @@ section div {
 #slogan-input {
     flex-direction: row;
 }
+
+.cold {
+    background-color: #0197F6;
+    border: solid 3px #448FA3;
+    width: 300px;
+}
+
+.hot {
+    background-color: #F2C078;
+    border: solid 3px #FE5D26;
+    width: 300px;
+}
+
+.tropical {
+    background-color: #FFFAE3;
+    border: solid 3px #F7567C;
+    width: 300px;
+}

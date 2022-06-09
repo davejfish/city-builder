@@ -25,10 +25,10 @@ const [climateInput, archInput] = inputSection.querySelectorAll('select');
 const sloganInput = inputSection.querySelector('textarea');
 
 // display dom elements
-const nameDisplay = document.getElementById('name-display');
-const climateDisplay = document.getElementById('climate-display');
-const archDisplay = document.getElementById('arch-display');
-const sloganDisplay = document.getElementById('slogan-display');
+const displaySection = document.getElementById('display-section');
+const [nameDisplay, sloganDisplay] = displaySection.querySelectorAll('span');
+const [climateDisplay, archDisplay] = displaySection.querySelectorAll('img');
+const displayGrid = displaySection.querySelector('section');
 
 // event handlers
 nameInput.addEventListener('input', () => {
@@ -39,6 +39,7 @@ nameInput.addEventListener('input', () => {
 climateInput.addEventListener('change', () => {
     city.climate = climateInput.value;
     climateDisplay.src = 'assets/' + climateInput.value + '.png';
+    updateClasses();
 });
 
 archInput.addEventListener('change', () => {
@@ -51,11 +52,13 @@ sloganInput.addEventListener('input', () => {
     sloganDisplay.textContent = sloganInput.value;
 });
 
+// update functions
 function updateDisplay() {
     nameDisplay.textContent = city.name;
     climateDisplay.src = 'assets/' + city.climate + '.png';
     archDisplay.src = 'assets/' + city.arch + '.png';
     sloganDisplay.textContent = city.slogan;
+    updateClasses();
 }
 
 function updateState() {
@@ -63,6 +66,11 @@ function updateState() {
     city.climate = climateInput.value;
     city.arch = archInput.value;
     city.slogan = sloganInput.value;
+}
+
+function updateClasses() {
+    displayGrid.classList.value = 'display-grid';
+    displayGrid.classList.add(`${climateInput.value}`);
 }
 // page load actions
 updateState();
