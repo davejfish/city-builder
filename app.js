@@ -91,7 +91,6 @@ function defaultInputs() {
 
 function handleAddCity() {
     cities.push(city);
-    console.log(cities);
     displayCity();
 
     defaultInputs();
