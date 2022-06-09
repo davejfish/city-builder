@@ -2,9 +2,6 @@
 
 /*
 TODO
-- refactor slogans to accept multiple slogans
-- change slogan even listener to add with enter or clicking add button
-- don't allow adding empty slogans
 - add thumbnails to climate and arch in the cities display at the bottom
 - add load button to reload any city and update the states to match it
 */
