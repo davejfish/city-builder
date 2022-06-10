@@ -1,1 +1,105 @@
 /* add css for index.html */
+@import url('https://fonts.googleapis.com/css2?family=Boogaloo&family=Caveat:wght@500&family=Lobster&display=swap');
+
+p {
+    display: flex;
+    flex-direction: column;
+}
+
+button {
+    margin: 10px;
+}
+
+input, select, textarea {
+    margin: 5px;
+}
+
+div img {
+    height: 90px;
+}
+
+section div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.input-grid {
+    display: flex;
+    flex-direction: column;
+    height: 150px;
+    width: 400px;
+}
+
+.display-grid {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    width: 300px;
+}
+
+.display-left {
+    display: grid;
+    grid-template-rows: 20% 80%;
+}
+
+.display-right {
+    display: grid;
+    grid-template-rows: 50% 50%;
+}
+
+.road-map-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    margin-bottom: 50px;
+}
+
+.road-map-grid p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.road-map-grid img {
+    height: 50px;
+}
+
+.road-map-grid button {
+    height: fit-content;
+    align-self: center;
+}
+
+.box {
+    border: solid 3px black;
+}
+
+#slogan-input {
+    flex-direction: row;
+}
+
+.cold {
+    background-color: #0197F6;
+    border: solid 3px #448FA3;
+}
+
+.hot {
+    background-color: #F2C078;
+    border: solid 3px #FE5D26;
+}
+
+.tropical {
+    background-color: #FFFAE3;
+    border: solid 3px #F7567C;
+}
+
+.haunted {
+    font-family: 'Boogaloo', cursive;
+}
+
+.hotspring {
+    font-family: 'Caveat', cursive;
+}
+
+.casino {
+    font-family: 'Lobster', cursive;
+}

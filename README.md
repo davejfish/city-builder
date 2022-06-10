@@ -8,6 +8,8 @@
 
 ## Making a plan
 
+<img src='wireframe.png'>
+
 1. Make a drawing of your app. **Simple "wireframes"**
 1. Once you have a drawing, **name the HTML elements** you'll need to realize your vision**
 1. Determine the Components (sections) of your app.
