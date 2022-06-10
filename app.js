@@ -120,7 +120,7 @@ function defaultInputs() {
 function updateInputs() {
     nameInput.value = nameDisplay.textContent;
     climateInput.selected = climateDisplay.value;
-    archInput.value = archDisplay.value;
+    archInput.selected = archDisplay.value;
 }
 
 function displaySlogans() {
