@@ -1,6 +1,11 @@
 /* add css for index.html */
 @import url('https://fonts.googleapis.com/css2?family=Boogaloo&family=Caveat:wght@500&family=Lobster&display=swap');
 
+p {
+    display: flex;
+    flex-direction: column;
+}
+
 button {
     margin: 10px;
 }
@@ -44,7 +49,7 @@ section div {
 
 .road-map-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 300px;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     margin-bottom: 50px;
 }
 
@@ -53,6 +58,15 @@ section div {
     justify-content: center;
     align-items: center;
     text-align: center;
+}
+
+.road-map-grid img {
+    height: 50px;
+}
+
+.road-map-grid button {
+    height: fit-content;
+    align-self: center;
 }
 
 .box {

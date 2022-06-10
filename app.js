@@ -15,6 +15,7 @@ const city = {
 };
 
 let cities = [];
+let savedCities = [];
 // components
     // component
     // define and grab DOM elements
@@ -35,7 +36,8 @@ const addSloganButton = inputSection.querySelector('button');
 
 // display dom elements
 const displaySection = document.getElementById('display-section');
-const [nameDisplay, sloganDisplay] = displaySection.querySelectorAll('span');
+const nameDisplay = displaySection.querySelector('span');
+const sloganDisplay = displaySection.querySelector('ul');
 const [climateDisplay, archDisplay] = displaySection.querySelectorAll('img');
 const displayGrid = displaySection.querySelector('section');
 const addCity = displaySection.querySelector('button');
@@ -77,7 +79,6 @@ function updateDisplay() {
     nameDisplay.textContent = city.name;
     climateDisplay.src = 'assets/' + city.climate + '.png';
     archDisplay.src = 'assets/' + city.arch + '.png';
-    sloganDisplay.textContent = city.slogan;
     updateClasses();
 }
 
@@ -92,10 +93,21 @@ function updateState() {
 
 function updateClasses() {
     displayGrid.classList.value = 'display-grid';
-    displayGrid.classList.add(climateInput.value, archInput.value);
+    displayGrid.classList.add(city.climate, city.arch);
+}
+
+function updateSavedCities() {
+    let newCity = {
+        name: nameInput.value,
+        climate: climateInput.value,
+        arch: archInput.value,
+        slogan: city.slogan,
+    };
+    savedCities.push(newCity);
 }
 
 function defaultInputs() {
+    sloganDisplay.innerHTML = '';
     nameInput.value = '';
     climateInput.value = 'cold';
     archInput.value = 'hotspring';
@@ -103,6 +115,12 @@ function defaultInputs() {
 
     city.slogan = [];
     cities = [];
+}
+
+function updateInputs() {
+    nameInput.value = nameDisplay.textContent;
+    climateInput.selected = climateDisplay.value;
+    archInput.value = archDisplay.value;
 }
 
 function displaySlogans() {
@@ -115,6 +133,7 @@ function displaySlogans() {
     }
 }
 
+// handlers
 function handleAddSlogan() {
 
     if (sloganInput.value.trim()) {
@@ -128,6 +147,8 @@ function handleAddCity() {
     cities.push(city);
     displayCity();
 
+    updateSavedCities();
+
     defaultInputs();
     updateState();
     updateDisplay();
@@ -137,24 +158,60 @@ const cityList = document.getElementById('road-map');
 
 function displayCity() {
     for (let i of cities) {
+
         let container = document.createElement('section');
-        container.classList.add('road-map-grid');
+        container.classList.add('road-map-grid', 'box');
        
         let pOne = document.createElement('p');
         pOne.textContent = i.name;
         
         let pTwo = document.createElement('p');
         pTwo.textContent = i.climate;
+        let climateImage = document.createElement('img');
+        climateImage.src = 'assets/' + climateInput.value + '.png';
+        pTwo.append(climateImage);
         
         let pThree = document.createElement('p');
         pThree.textContent = i.arch;
+        let archImage = document.createElement('img');
+        archImage.src = 'assets/' + archInput.value + '.png';
+        pThree.append(archImage);
         
         let pFour = document.createElement('p');
-        pFour.textContent = i.slogan.length;
+        if ((city.slogan.length === 0) || (city.slogan.length >= 2)) {
+            pFour.textContent = `${i.slogan.length} slogans`;
+        }
+        else {
+            pFour.textContent = '1 slogan';
+        }
 
-        container.append(pOne, pTwo, pThree, pFour);
+        let loadCity = document.createElement('button');
+        loadCity.innerHTML = 'load';
+        
+        
+
+        container.append(pOne, pTwo, pThree, pFour, loadCity);
         cityList.append(container);
+    }
+    
+    
+    let loadButtons = cityList.querySelectorAll('button');
+    for (let i = 0; i < loadButtons.length; i++) {
+        loadButtons[i].addEventListener('click', () => {
+            city.name = savedCities[i].name;
+            city.climate = savedCities[i].climate;
+            city.arch = savedCities[i].arch;
+            for (let j of savedCities[i].slogan) {
+                city.slogan.push(j);
+            }
+            displaySlogans();
+            updateClasses();
 
+            updateInputs();
+            updateDisplay();
+
+            city.slogan = [];
+        });
     }
 }
 
