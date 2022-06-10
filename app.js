@@ -84,8 +84,12 @@ function updateDisplay() {
 
 function updateState() {
     city.name = nameInput.value;
-    city.climate = climateInput.value;
-    city.arch = archInput.value;
+    if (climateInput.value) {
+        city.climate = climateInput.value;
+    }
+    if (archInput.value) {
+        city.arch = archInput.value;
+    }
     if (sloganInput.value.trim()) {
         city.slogan.push(sloganInput.value);
     }
@@ -109,8 +113,8 @@ function updateSavedCities() {
 function defaultInputs() {
     sloganDisplay.innerHTML = '';
     nameInput.value = '';
-    climateInput.value = 'cold';
-    archInput.value = 'hotspring';
+    climateInput.selectedIndex = city.climate;
+    archInput.selectedIndex = city.arch;
     sloganInput.value = '';
 
     city.slogan = [];
@@ -119,8 +123,8 @@ function defaultInputs() {
 
 function updateInputs() {
     nameInput.value = nameDisplay.textContent;
-    climateInput.selected = climateDisplay.value;
-    archInput.selected = archDisplay.value;
+    climateInput.value = city.climate;
+    archInput.value = city.arch;
 }
 
 function displaySlogans() {
@@ -168,13 +172,13 @@ function displayCity() {
         let pTwo = document.createElement('p');
         pTwo.textContent = i.climate;
         let climateImage = document.createElement('img');
-        climateImage.src = 'assets/' + climateInput.value + '.png';
+        climateImage.src = 'assets/' + i.climate + '.png';
         pTwo.append(climateImage);
         
         let pThree = document.createElement('p');
         pThree.textContent = i.arch;
         let archImage = document.createElement('img');
-        archImage.src = 'assets/' + archInput.value + '.png';
+        archImage.src = 'assets/' + i.arch + '.png';
         pThree.append(archImage);
         
         let pFour = document.createElement('p');
@@ -209,6 +213,7 @@ function displayCity() {
 
             updateInputs();
             updateDisplay();
+            updateState();
 
             city.slogan = [];
         });
